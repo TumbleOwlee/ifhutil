@@ -1,5 +1,7 @@
 # R Package `ifhutil`
 
+[![R 3.6.3, 4.1.1](https://github.com/TumbleOwlee/ifhutil/actions/workflows/r.yml/badge.svg?branch=main)](https://github.com/TumbleOwlee/ifhutil/actions/workflows/r.yml)
+
 This repository contains sources of the `ifhutil` package. This packages provides various utility function to simplify scripts while also providing an clean and pretty format of output messages.
 
 # Quickstart
