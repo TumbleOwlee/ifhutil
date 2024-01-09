@@ -16,5 +16,4 @@ cli_alert_danger() by the 'cli' package for prettier messages.
 }
 \examples{
 ifh.error("Print an error message with number", 10)
-
 }

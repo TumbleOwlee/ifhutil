@@ -35,7 +35,3 @@ so that each row of the table only contains a single value in the column. It is 
 by multiplying the row for each of the list elements. This is useful if you want to
 create an 1:1 mapping from an 1:n mapping in each row.
 }
-\examples{
-ifh.table.expand(df, 'X', split = ',', na = '-', limit.to = c('Y'), remove.prefix = 'p:')
-
-}

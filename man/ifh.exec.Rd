@@ -16,7 +16,3 @@ This function is used to execute any expression and providing the option
 to suppress all output by utilizing a flag. It is mainly used by CLI
 applications that provide an '--quiet' flag to switch output.
 }
-\examples{
-ifh.exec({install.packages('cli')}, quiet = TRUE)
-
-}

@@ -1,3 +1,4 @@
+0
 #'
 #' Maintainer: David Loewe <49597367+TumbleOwlee@users.noreply.github.com>
 #' License: MIT
@@ -159,7 +160,7 @@ ifh.install <- function(pkg, ..., quiet = FALSE) {
 #' @export
 ifh.init <- function(packages, quiet = FALSE) {
     # Install BiocManager is not present
-    if (!require("BiocManager", quietly = quiet))
+    if (!requireNamespace("BiocManager", quietly = quiet))
         install.packages("BiocManager", repos = "http://cran.rstudio.com/", dependencies = TRUE, quiet = quiet)
 
     # Get list of installed packages to skip install calls for

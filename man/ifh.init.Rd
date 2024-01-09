@@ -17,7 +17,3 @@ for pretty output. Furthermore any list of package names provided as
 'packages' are installed and loaded. Also the flag is provided to
 suppress all output of the installation and load calls.#'
 }
-\examples{
-ifh.init(c('somePackage', 'otherPackage'), quiet = TRUE)
-
-}

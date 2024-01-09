@@ -18,7 +18,3 @@ This function allows the installation of a package. It is only callable
 without an error after ifh.init() is called. It can be used to install and load
 additional packages after the ifh.init() was called.
 }
-\examples{
-ifh.install('cli', quiet = FALSE)
-
-}

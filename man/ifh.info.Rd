@@ -16,5 +16,4 @@ cli_alert_info() by the 'cli' package for prettier messages.
 }
 \examples{
 ifh.info("Print some info with number", 10)
-
 }

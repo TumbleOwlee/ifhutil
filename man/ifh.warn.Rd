@@ -16,5 +16,4 @@ cli_alert_warning() by the 'cli' package for prettier messages.
 }
 \examples{
 ifh.warn("Print some step with number", 10)
-
 }

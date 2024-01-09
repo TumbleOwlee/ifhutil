@@ -18,5 +18,4 @@ It is mainly used by ifh.info(), ifh.step(), ifh.success() and ifh.error().
 \examples{
 ifh.message("The number is", 10)
 ifh.message("Add prefix to mark the message.", prefix = "[!]")
-
 }

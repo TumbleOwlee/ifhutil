@@ -1,9 +1,6 @@
 \name{ifhutil}
 \alias{ifhutil}
 \title{Institute of Hygiene Utility}
-\usage{
-}
 \description{
-}
-\examples{
+    Packages providing utility functions for script simplification and pretty formatting of outputs.
 }
