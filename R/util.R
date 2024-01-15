@@ -533,7 +533,7 @@ ifh.table.expand <- function(table, by, split = ",", na = "", limit.to = vector(
 #' @export
 ifh.table.export <- function(table, file, row.names = FALSE, quote = FALSE, sep = "\t", ...) {
     .GlobalEnv$ifh.info("Export table to", file)
-    write.table(table, file = file, row.names = FALSE, quote = quote, sep = sep, ...)
+    write.table(table, file = file, row.names = row.names, quote = quote, sep = sep, ...)
     .GlobalEnv$ifh.success("Export completed.")
 }
 
