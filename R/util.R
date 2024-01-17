@@ -488,17 +488,18 @@ ifh.table.expand <- function(table, by, split = ",", na = "", limit.to = vector(
                 value <- strsplit(value, split = remove.prefix)[[1]][2]
             }
             # Write new row
-            if (!is.na(value) && value != na) {
-                line <- ''
-                for (c in limit.to) {
-                    if (line == '') {
-                        line <- table[i, c]
-                    } else {
-                        line <- paste(line, table[i, c], sep = sep, collapse = sep)
-                    }
-                }
-                writeLines(paste(value, line, sep = sep, collapse = sep), output)
+            if (is.na(value)) {
+                value <- na
             }
+            line <- ''
+            for (c in limit.to) {
+                if (line == '') {
+                    line <- table[i, c]
+                } else {
+                    line <- paste(line, table[i, c], sep = sep, collapse = sep)
+                }
+            }
+            writeLines(paste(value, line, sep = sep, collapse = sep), output)
         }
 
         # Inform user about progress
