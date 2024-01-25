@@ -667,10 +667,12 @@ ifh.check.chunk.params <- function(tag, ...) {
             print("length mismatch")
             return (FALSE)
         }
-        for (i in 1:length(args)) {
-            print(paste(hash(args[[i]]), " != ", rcache[[i]]))
-            if (hash(args[[i]]) != rcache[[i]]) {
-                return(FALSE)
+        if (length(args) > 0) {
+            for (i in 1:length(args)) {
+                print(paste(hash(args[[i]]), " != ", rcache[[i]]))
+                if (hash(args[[i]]) != rcache[[i]]) {
+                    return(FALSE)
+                }
             }
         }
         return(TRUE)
@@ -699,7 +701,7 @@ ifh.update.chunk.params <- function(tag, ...) {
     args <- list(...)
     rcache <- list()
     if (length(args) > 0) {
-        for (i in 1:seq_along(args)) {
+        for (i in 1:length(args)) {
             rcache[i] <- hash(args[[i]])
         }
     }
