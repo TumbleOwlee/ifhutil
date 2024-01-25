@@ -655,7 +655,6 @@ ifh.quiet <- function(quiet) {
 ifh.check.chunk.params <- function(tag, ...) {
     # Check if chunk hash cache is present
     if (!ifh.file.exists(paste("./.cache/chunk-", tag))) {
-        print("file missing")
         return(FALSE)
     }
 
@@ -664,12 +663,10 @@ ifh.check.chunk.params <- function(tag, ...) {
         args <- list(...)
         ifh.cache.load(paste("./.cache/chunk-", tag))
         if (length(args) != length(rcache)) {
-            print("length mismatch")
             return (FALSE)
         }
         if (length(args) > 0) {
             for (i in 1:length(args)) {
-                print(paste(hash(args[[i]]), " != ", rcache[[i]]))
                 if (hash(args[[i]]) != rcache[[i]]) {
                     return(FALSE)
                 }
