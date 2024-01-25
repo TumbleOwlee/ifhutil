@@ -663,17 +663,21 @@ ifh.check.chunk.params <- function(tag, ...) {
         args <- list(...)
         ifh.cache.load(paste("./.cache/chunk-", tag))
         if (length(args) != length(rcache)) {
+            .GlobalEnv$ifh.warn(paste("Length mismatch! Expected: ", length(args), ", Found: " , length(rcache), sep = ''))
             return (FALSE)
         }
         if (length(args) > 0) {
             for (i in 1:length(args)) {
                 if (hash(args[[i]]) != rcache[[i]]) {
+                    .GlobalEnv$ifh.warn(paste("Hash mismatch for argument ", i, ". Expected: ", hash(args[[i]]), ", Found: " , rcache[[i]], sep = ''))
                     return(FALSE)
                 }
             }
         }
         return(TRUE)
     })
+    
+    .GlobalEnv$ifh.info(paste("Some input value isn't defined. Reprocessing necessary.", sep = ''))
     return(FALSE)
 }
 
