@@ -659,7 +659,7 @@ ifh.check.chunk.params <- function(tag, ...) {
     }
 
     # Check every argument whether it's the same as the cached value
-    try({
+    tryCatch({
         args <- list(...)
         ifh.cache.load(paste("./.cache/chunk-", tag))
         if (length(args) != length(rcache)) {
@@ -675,7 +675,7 @@ ifh.check.chunk.params <- function(tag, ...) {
             }
         }
         return(TRUE)
-    })
+    }, error = function(e) {})
     
     .GlobalEnv$ifh.info(paste("Some input value isn't defined. Reprocessing necessary.", sep = ''))
     return(FALSE)
