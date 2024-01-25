@@ -27,6 +27,8 @@ export(ifh.table.export)
 export(ifh.table.import)
 export(ifh.user.prompt)
 export(ifh.warn)
+export(ifh.check.chunk.params)
+export(ifh.update.chunk.params)
 
 import(utils)
 import(BiocManager)

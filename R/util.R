@@ -195,6 +195,12 @@ ifh.init <- function(packages, quiet = FALSE) {
         .GlobalEnv$ifh.install(pkg = "optparse", quiet = quiet)
     }
 
+    # Install package 'rlang' by default (skip if present in provided packages list)
+    # This package is used to provide hashing functionality
+    if (!("rlang" %in% packages)) {
+        .GlobalEnv$ifh.install(pkg = "rlang", quiet = quiet)
+    }
+
     # Install all user requested packages.
     for (pkg in packages) {
         .GlobalEnv$ifh.install(pkg = pkg, quiet = quiet)
@@ -628,4 +634,72 @@ ifh.quiet <- function(quiet) {
     } else {
         sink()
     }
+}
+
+#' Check if given arguments match with cached (hashed) values in cache file
+#' 
+#' @description
+#' This function works only if `ifh.update.chunk.params` is also used. This
+#' call will check if the stored hashes for the arguments are the same and
+#' if so will return TRUE, else FALSE. If this function is called at the start
+#' of a chunk and `ifh.check.chunk.params` at the end and all relevant input/output
+#' parameters are listed in both calls, this can speed up processing by skipping
+#' the unnecessary reprocessing of the chunk.
+#' 
+#' @param tag The tag associated with the chunk
+#' @param ... List of input and output parameters of the chunk to cache
+#' 
+#' @export
+ifh.check.chunk.params <- function(tag, ...) {
+    # Check if chunk hash cache is present
+    if (!ifh.file.exists(paste("./.cache/chunk-", tag))) {
+        print("file missing")
+        return(FALSE)
+    }
+
+    # Check every argument whether it's the same as the cached value
+    try({
+        args <- list(...)
+        ifh.cache.load(paste("./.cache/chunk-", tag))
+        if (length(args) != length(rcache)) {
+            print("length mismatch")
+            return (FALSE)
+        }
+        for (i in 1:length(args)) {
+            print(paste(hash(args[[i]]), " != ", rcache[[i]]))
+            if (hash(args[[i]]) != rcache[[i]]) {
+                return(FALSE)
+            }
+        }
+        return(TRUE)
+    })
+    return(FALSE)
+}
+
+#' Update the chunk cache with the hashes of the listed parameters
+#'
+#' @description
+#' This function works only if `ifh.check.chunk.params` is also used. This
+#' call will store the hashes for all given parameters in a cache file,
+#'
+#' If `ifh.check.chunk.params` is called at the start of a chunk and
+#' this function at the end and all relevant input/output parameters are 
+#' listed in both calls, this can speed up processing by skipping
+#' the unnecessary reprocessing of the chunk.
+#'
+#' @param tag The tag associated with the chunk
+#' @param ... List of input and output parameters of the chunk to cache
+#'
+#' @export
+ifh.update.chunk.params <- function(tag, ...) {
+    ifh.dir.create_if("./.cache")
+    # Hash every passed argument and write to file
+    args <- list(...)
+    rcache <- list()
+    if (length(args) > 0) {
+        for (i in 1:seq_along(args)) {
+            rcache[i] <- hash(args[[i]])
+        }
+    }
+    ifh.cache.save(rcache, file = paste("./.cache/chunk-", tag))
 }
