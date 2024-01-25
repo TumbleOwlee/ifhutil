@@ -649,6 +649,8 @@ ifh.quiet <- function(quiet) {
 #' @param tag The tag associated with the chunk
 #' @param ... List of input and output parameters of the chunk to cache
 #' 
+#' @return TRUE if data matches with hashes, FALSE otherwise
+#' 
 #' @export
 ifh.check.chunk.params <- function(tag, ...) {
     # Check if chunk hash cache is present
