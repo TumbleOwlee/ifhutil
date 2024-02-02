@@ -708,3 +708,22 @@ ifh.update.chunk.params <- function(tag, ...) {
     }
     ifh.cache.save(rcache, file = paste("./.cache/chunk-", tag))
 }
+
+#' Export the given plot to pdf
+#'
+#' @description
+#' This function exports the given plot as pdf and returns it.
+#'
+#' @param plot The plot to export.
+#' @param name The name of the pdf file to export to.
+#' @param heigt The height of the plot.
+#' @param width The width of the plot
+#' @return The plot itself as given
+#'
+#' @export
+ifh.export.plot = function(plot, name, height, width) {
+  pdf(name, width = width, height = height, pointsize = 20)
+  print(plot)
+  dev.off()
+  return(plot)
+}

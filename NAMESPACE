@@ -29,6 +29,7 @@ export(ifh.user.prompt)
 export(ifh.warn)
 export(ifh.check.chunk.params)
 export(ifh.update.chunk.params)
+export(ifh.export.plot)
 
 import(utils)
 import(BiocManager)
